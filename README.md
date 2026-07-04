@@ -112,4 +112,22 @@ npm run dev
 Open `http://localhost:5173` in your browser.
 
 ---
-I Agents: Intensive Vibe Coding Course Capstone.*
+
+## 🚀 Deployment Guide (100% Free)
+
+### Backend (Hugging Face Spaces)
+1. Create a free account on [Hugging Face](https://huggingface.co) and create a new Space.
+2. Select **Docker** as the Space SDK (Blank template).
+3. Connect your space to this GitHub repository or upload the files (including `Dockerfile`).
+4. Go to **Settings -> Variables and secrets**. Add `GEMINI_API_KEY` and `YOUTUBE_API_KEY`.
+5. Copy the Direct URL of your space (e.g., `https://username-knowledge-loom-backend.hf.space`).
+
+### Frontend (Vercel)
+1. Create a free account on [Vercel](https://vercel.com) and create a New Project.
+2. Import this GitHub repository and set the **Root Directory** to `frontend`.
+3. Under Environment Variables, add `VITE_API_URL` and paste your Hugging Face Space URL.
+4. Click **Deploy**.
+
+---
+*Built for the Kaggle 5-Day AI Agents: Intensive Vibe Coding Course Capstone.*
+
