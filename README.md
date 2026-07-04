@@ -54,6 +54,9 @@ A traditional software application would simply return a list of links via stand
 
 When a user submits a topic on the frontend, the FastAPI backend orchestrator triggers the following workflow:
 
+![Knowledge Loom Architecture](diagram.png)
+
+
 1. **Safety Gate Agent (LLM)**: Before any heavy processing, this agent inspects the prompt for harmful, inappropriate, or non-educational content. If the prompt fails, the process is safely aborted.
 2. **Parallel Swarm Execution**:
    - **Overview Agent**: Uses Gemini grounded with Google Search to gather foundational knowledge and synthesize a structured, text-based summary.
@@ -113,7 +116,7 @@ Open `http://localhost:5173` in your browser.
 
 ---
 
-## 🚀 Deployment Guide (100% Free)
+## 🚀 Deployment Guide 
 
 ### Backend (Hugging Face Spaces)
 1. Create a free account on [Hugging Face](https://huggingface.co) and create a new Space.
