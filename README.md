@@ -19,24 +19,31 @@ Knowledge Loom is built with a separated frontend and backend architecture:
 - **Aggregator Agent**: Gemini for merging data into a clean Markdown report.
 - **Safety Gate**: LLM-based check to prevent generation of harmful content.
 
-## Deployment 🚀
+## Deployment 🚀 (100% Free, No Credit Card Required)
 
-The project is structured to easily deploy the **Frontend on Vercel** and the **Backend on Render**.
+Vercel is used for the frontend, but Vercel cannot run the backend because Vercel Serverless Functions have a strict 10-second timeout on the free tier (the AI agents take longer than this). 
 
-### 1. Backend (Render.com)
-The root directory contains a `render.yaml` Blueprint for easy deployment on Render.
+Instead, we use a **Docker** container to host the backend on a platform that does not require a credit card.
 
-1. Create a free account on [Render](https://render.com).
-2. Go to **Blueprints** -> **New Blueprint Instance**.
-3. Connect this GitHub repository.
-4. Render will automatically detect the `render.yaml` file.
-5. In the Render Dashboard, go to your new Web Service's **Environment** tab and add your real API keys:
+### 1. Backend (Hugging Face Spaces - Recommended)
+Hugging Face Spaces provides free hosting for Docker containers and is perfect for AI agents. They will **never** ask for a credit card.
+
+1. Create a free account on [Hugging Face](https://huggingface.co).
+2. Go to **Spaces** and click **Create new Space**.
+3. Name your space (e.g. `knowledge-loom-backend`).
+4. Select **Docker** as the Space SDK, and choose **Blank** template.
+5. Under "Space Hardware", keep the free "CPU basic".
+6. Click **Create Space**.
+7. Connect your space to this GitHub repository, or just upload the project files (including the `Dockerfile`).
+8. Go to your Space **Settings** -> **Variables and secrets**. Add your API keys as Secrets:
    - `GEMINI_API_KEY`
    - `YOUTUBE_API_KEY`
-6. Once deployed, copy your Render Web Service URL (e.g., `https://knowledge-loom-backend.onrender.com`).
+9. Once the container builds, click the **three dots** in the top right -> **Embed this Space** -> Look for the Direct URL (it looks like `https://username-knowledge-loom-backend.hf.space`). Copy this URL.
+
+*(Alternative: Koyeb is another great free Docker host that doesn't require a credit card).*
 
 ### 2. Frontend (Vercel)
-The `frontend` directory contains a `vercel.json` file.
+The `frontend` directory contains a `vercel.json` file to make deployment seamless.
 
 1. Create a free account on [Vercel](https://vercel.com).
 2. Click **Add New** -> **Project**.
@@ -45,7 +52,7 @@ The `frontend` directory contains a `vercel.json` file.
 5. The Framework Preset will automatically be detected as **Vite**.
 6. Open the **Environment Variables** section and add:
    - Key: `VITE_API_URL`
-   - Value: `https://your-backend-url.onrender.com` (from step 1)
+   - Value: `https://username-knowledge-loom-backend.hf.space` (Your URL from step 1)
 7. Click **Deploy**.
 
 ## Local Development
@@ -73,6 +80,7 @@ cp .env.example .env
 # Start the FastAPI server
 uvicorn backend.main:app --host 127.0.0.1 --reload --port 8000
 ```
+*(Alternatively, you can run the backend via Docker: `docker build -t loom-backend .` and `docker run -p 7860:7860 --env-file .env loom-backend`)*
 
 ### Frontend Setup
 Open a new terminal window:
@@ -83,10 +91,3 @@ npm run dev
 ```
 
 Open `http://localhost:5173` in your browser.
-
-## Limitations
-
-- The system follows a fixed pipeline instead of autonomous planning.
-- Output quality depends on the Gemini API, YouTube API, and OpenAlex API.
-- The report should be reviewed by a human before using it for academic or professional decisions.
-- Free tier API limits on Gemini and YouTube might result in temporary timeouts.
