@@ -7,7 +7,7 @@
 ---
 
 ## 🎥 Project Links
-- **Video Demonstration**: [Insert your YouTube Link Here]
+- **Video Demonstration**: [Youtube Video](https://youtu.be/n9YoUlV3fiE)
 - **Live Demo**: [Knowledge Loom Vercel App](https://knowledge-loom-phi.vercel.app/)
 - **Backend API**: [Hugging Face Space](https://huggingface.co/spaces/Souvikbasur/knowledge-loom-backend)
 - **GitHub Repository**: [Knowledge Loom](https://github.com/souvikbasuroy/Knowledge_Loom)
